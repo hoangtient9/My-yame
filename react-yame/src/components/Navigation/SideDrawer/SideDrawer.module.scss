@@ -1,0 +1,30 @@
+.SideDrawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 200;
+    display: flex;
+    flex-flow: column;
+    width: 300px;
+    height: calc(100vh);
+    overflow: auto;
+    background: white;
+    transition: transform 0.5s ease-out;
+    // transition: 0.5s;
+
+    @media (min-width: 60rem) {
+        display: none;
+    }
+}
+
+.Open {
+    transform: translateX(0);
+    // width: 300px;
+
+}
+
+.Close {
+    transform: translateX(100%);
+    // width: 0;
+
+}
