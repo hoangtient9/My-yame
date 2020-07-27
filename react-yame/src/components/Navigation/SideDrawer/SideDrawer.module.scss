@@ -7,9 +7,20 @@
     flex-flow: column;
     width: 300px;
     height: calc(100vh);
-    overflow: auto;
     background: white;
     transition: transform 0.5s ease-out;
+
+    > div {
+        height: 60px;
+        background: #000;
+
+        > span {
+            height: 100%;
+            font-size: 54px;
+            float: right;
+            color: white;;
+        }
+    }
     // transition: 0.5s;
 
     @media (min-width: 60rem) {

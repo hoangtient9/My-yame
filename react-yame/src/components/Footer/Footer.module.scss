@@ -17,7 +17,14 @@
 
         > div {
             width: 100%;
-            // margin: 15px 10px;
+            .FooterLogo {
+                height: 95px;
+                padding: 15px 10px 0px;
+
+                > div {
+                    background: #111;
+                }
+            }
 
             @media (min-width: 40rem) {
                 width: 30%; 
@@ -29,7 +36,6 @@
     }
 
     @media (min-width: 40rem) {
-        // height: auto;
         height: 400px;
     }
 }

@@ -1,0 +1,50 @@
+.Button {
+    border: none;
+    padding: 10px;
+    margin: 10px auto;
+    color: white;
+    font: inherit;
+    background: transparent;
+    font-weight: bold;
+    outline: none;
+    cursor: pointer;
+
+    &:first-of-type {
+        margin-left: 0;
+        // padding-left: 0;
+    }
+
+    &:disabled {
+        color: #ccc;
+        cursor: not-allowed;
+    }
+}
+
+.Success {
+    color: #5C9210;
+}
+
+.Danger {
+    color: #944317;
+}
+
+.BtnAuth {
+    // border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 2px 2px 3px #966909;
+    background: #944317;
+    color: white;
+
+    &:first-of-type {
+        padding: 10px;
+        margin: 10px auto;
+    }
+
+    &:disabled {
+        border: 1px solid #ccc;
+        // border: none;
+        color: #888;
+        background: #C7C6C6;
+        cursor: not-allowed;
+      }
+}

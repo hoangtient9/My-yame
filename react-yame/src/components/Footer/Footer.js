@@ -2,6 +2,7 @@ import React from 'react';
 
 import classes from './Footer.module.scss';
 import FooterItems from './FooterItems/FooterItems';
+import Logo from '../Logo/Logo'
 
 const footerList = [
     ['Thông tin', 'Giới thiệu về YaMe.vn', 'Tuyển dụng',  '.', 'Điều khoản mua bán', 'Điều khoản mua bán', '.', 'Mã Voucher giảm giá'],
@@ -18,7 +19,14 @@ const Footer = props => {
         <div className={classes.Footer}>
             <div>
                 {footerList.map((footer, i) => {
-                    return i === 1 ? (
+                    return i === 0 ? (
+                        <div key={i}>
+                            <div className={classes.FooterLogo}>
+                                <Logo />
+                            </div>
+                            <FooterItems items={footer}/>
+                        </div>
+                    ) : i === 1 ? (
                         <div key={i}>
                             {footer.map((f, ind) => <FooterItems key={ind} items={f} />)}
                         </div>

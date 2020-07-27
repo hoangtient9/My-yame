@@ -2,20 +2,17 @@ import React from 'react';
 
 import classes from './NavigationItems.module.scss';
 import NavigationItem from './NavigationItem/NavigationItem';
-import Dropdown from '../Dropdown/Dropdown';
-
 
 
 
 const NavigationItems = (props) => (
     <ul className={classes.NavigationItems}>
-        <NavigationItem>Selling</NavigationItem>
-        <NavigationItem>Seal 50%</NavigationItem>
-        <NavigationItem>Simple</NavigationItem>
-        <NavigationItem>Design</NavigationItem>
+        <NavigationItem>Shirt</NavigationItem>
+        <NavigationItem>Pant</NavigationItem>
+        <NavigationItem>Shoe</NavigationItem>
+        <NavigationItem>Balo</NavigationItem>
         <NavigationItem>T-shirt</NavigationItem>
-        <NavigationItem dropdown><Dropdown /></NavigationItem>
-        {props.children}
+        <NavigationItem>Sandal</NavigationItem>
     </ul>
 )
 

@@ -1,13 +1,34 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
+import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 
-ReactDOM.render(
-  <React.StrictMode>
+import './index.css';
+import * as serviceWorker from './serviceWorker';
+import App from './App';
+import {watchProducts} from './store/sagas/index';
+import home from './store/reducer/home';
+
+const rootReducer = combineReducers({
+  home: home 
+});
+
+const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
+
+const sagaMiddleware = createSagaMiddleware();
+const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, sagaMiddleware)));
+
+sagaMiddleware.run(watchProducts)
+
+const app = (
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>
+)
+ReactDOM.render(
+  app,
   document.getElementById('root')
 );
 
