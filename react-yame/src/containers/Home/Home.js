@@ -7,24 +7,36 @@ import BigPoster from '../../components/Products/BigPoster/BigPoster';
 import * as actions from '../../store/actions/index';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const Home = props => {
     const dispatch = useDispatch();
     const onFetchProducts = useCallback(() => dispatch(actions.fetchProducts()), [dispatch]);
 
+    const productsData = useSelector(state => state.home.products);
+    const bigPosterData = useSelector(state => state.home.bigPoster);
+    const newPosterData = useSelector(state => state.home.newPoster);
+    const loading = useSelector(state => state.home.loading);
+
     useEffect(() => {
         onFetchProducts()
     }, [onFetchProducts])
 
-    return (
-        <Fragment>
-            <BigPoster link='https://cdn2.yame.vn/cimg/images/e55cc89a-1deb-0100-de9f-0016ff5a95b4.jpg'/>
-            <Poster />
-            <Products />
-            <BigPoster link='https://cdn2.yame.vn/cimg/images/75ebdabd-9480-0100-3d82-0016ef081a94.jpg' />
-            <Products />
-        </Fragment>
-    )
+    let home = <Spinner />;
+
+    if (!loading && bigPosterData && newPosterData && productsData) {
+        home = (
+            <Fragment>
+                <BigPoster link={bigPosterData[0].addData.image}/>
+                <Poster data={newPosterData}/>
+                <Products data={productsData.slice(0, 8)}/>
+                <BigPoster link={bigPosterData[1].addData.image} />
+                <Products data={productsData.slice(8)}/>
+            </Fragment>
+        )
+    }
+
+    return home
 }
 
 export default withErrorHandler(Home, axios);

@@ -1,18 +1,19 @@
 .Poster {
     width: 100%;
     display: flex;
+    margin-top: 15px;
     flex-flow: wrap;
     justify-content: center;
 
     .PosterItem {
         width: 100%;
-        padding: 15px;
+        padding: 0px 15px 15px;
         
         > div {
             width: 100%;
 
             > h4 {
-                margin: 20px 0 0.5rem;
+                // margin: 20px 0 0.5rem;
                 text-align: left;
                 font-weight: normal;
                 font-size: 1.5rem;
@@ -30,11 +31,20 @@
 
             > div {
                 width: 25%;
-                padding: 15px;
+                padding: 10px;
+                flex: 1;
 
                 > img {
                     width: 100%;
                 }
+            }
+
+            > div:first-child {
+                padding-left: 0;
+            }
+
+            > div:last-child {
+                padding-right: 0;
             }
         }
 

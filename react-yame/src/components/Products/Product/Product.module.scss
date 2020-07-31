@@ -1,21 +1,26 @@
 .Product {
     width: 50%;
     padding: 0 10px;
-    margin-bottom: 20px;
-
-    .ProductImg {
+    margin: 10px auto;
+    height: auto;
+    
+    > div:first-child {
         width: 100%;
         overflow: hidden;
     }
 
     .ListImages {
         display: flex;
+        flex-flow: row wrap;
         width: 100%;
         margin-top: 10px;
 
         > div {
             width: 40px;
             height: 40px;
+            flex-shrink: 0;
+            margin: 0 5px;
+            margin-bottom: 5px;
 
             > img {
                 width: 100%;
@@ -31,9 +36,13 @@
         }
     }
 
+    > .Price {
+        width: 100%;
+        text-align: left;
+    }
+
     @media (min-width: 40rem) {
         width: 25%;
-        margin: 30px auto;
         padding: 0 15px;
 
     }

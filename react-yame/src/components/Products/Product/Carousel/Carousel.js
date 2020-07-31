@@ -1,21 +1,23 @@
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect, useCallback, useRef} from 'react';
 
 import classes from './Carousel.module.scss';
 
 const Carousel = props => {
     const [index, setIndex] = useState(0);
     const [firstRun, setFirstRun] = useState(true)
+    const [heightState, setHeightState] = useState(0);
+    const myRef = useRef(null);
 
     const goNext = useCallback(() => {
         if (props.slides.length > 1) {
             setIndex(props.slides.length - 1 === index ? 0 : index + 1)
             setFirstRun(false)
         }
-        
     }, [index, props.slides])
 
     useEffect(() => {
         setTimeout(goNext, 3000);
+        setHeightState(myRef.current.offsetHeight)
         return () => {
             clearTimeout(goNext)
         }
@@ -26,7 +28,7 @@ const Carousel = props => {
     }
 
     return (
-        <div className={classes.Carousel}>
+        <div className={classes.Carousel} style={{height: `${heightState}px`}}>
             {props.slides.map((slide, i) => (
                 <div key={i} className={
                     i === index ? !firstRun ? [classes.Slide, classes.enterActive, classes.firstRun].join(' ') : [classes.Slide, classes.enterActive].join(' ') :
@@ -34,7 +36,7 @@ const Carousel = props => {
                     i === index -1 ? [classes.Slide, classes.exitActive, classes.firstRun].join(' ') : [classes.Slide, classes.enter].join(' ')
 
                 }>
-                    <img src={slide.link} alt={slide.title}/>
+                    <img ref={myRef} src={slide} alt='anh loi' loading='lazy'/>
                 </div> 
             ))}
         </div>

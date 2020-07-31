@@ -5,9 +5,10 @@ import * as actions from '../actions';
 export function* fetchProductsSaga(action) {
     yield put(actions.fetchProductsStart())
     try {
-        const fetchBigPoster = yield axios.get('/bigposter.json');
-        const fetchNewPoster = yield axios.get('/newposter.json');
-        const fetchProducts = yield axios.get('/products.json?orderBy="$value"&limitToLast=3&print=pretty');
+        const fetchBigPoster = yield axios.get('/bigposter.json?orderBy="$value"&limitToFirst=2&print=pretty');
+        const fetchNewPoster = yield axios.get('/newposter.json?orderBy="$value"&limitToFirst=4&print=pretty');
+        const fetchProducts = yield axios.get('/products.json?orderBy="$value"&limitToFirst=16&print=pretty');
+        console.log(fetchProducts)
         const bigPoster = [];
         const newPoster = [];
         const products = [];

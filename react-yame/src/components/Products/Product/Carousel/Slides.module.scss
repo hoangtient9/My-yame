@@ -1,0 +1,14 @@
+.Carousel {
+  width: 100%;
+  display: flex;
+}
+
+.Slide {
+  flex-shrink: 0;
+  width: 100%;
+
+  img {
+    width: 100%;
+  }
+}
+

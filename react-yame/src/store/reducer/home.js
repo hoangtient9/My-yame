@@ -3,9 +3,9 @@ import {updateObject} from '../../shared/ultility';
 
 const initialState = {
     loading: false,
-    products: [],
-    bigPoster: [],
-    newPoster: []
+    products: null,
+    bigPoster: null,
+    newPoster: null
 }
 
 const fetchProductsStart = (state, action) => {
