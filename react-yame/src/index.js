@@ -4,15 +4,18 @@ import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
+import { BrowserRouter } from 'react-router-dom';
 
 import './index.css';
 import * as serviceWorker from './serviceWorker';
 import App from './App';
-import {watchProducts} from './store/sagas/index';
 import home from './store/reducer/home';
+import search from './store/reducer/search';
+import {watchProducts, watchSearch} from './store/sagas/index';
 
 const rootReducer = combineReducers({
-  home: home 
+  home: home,
+  search: search
 });
 
 const composeEnhancers = process.env.NODE_ENV === 'development' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : null || compose;
@@ -21,10 +24,13 @@ const sagaMiddleware = createSagaMiddleware();
 const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk, sagaMiddleware)));
 
 sagaMiddleware.run(watchProducts)
+sagaMiddleware.run(watchSearch)
 
 const app = (
   <Provider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </Provider>
 )
 ReactDOM.render(

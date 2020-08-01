@@ -4,13 +4,27 @@ import classes from './Products.module.scss';
 import Product from './Product/Product';
 
 const Products = props => {
+    let products = (
+        props.data.map((product, i) => (
+            <div key={i} className={classes.Item}>
+                <Product data={product} key={i}/>
+            </div>
+        ))   
+    );
+
+    if (props.data.length <= 2){
+        products = (
+            props.data.map((product, i) => (
+                <div key={i} className={[classes.Item, classes.BigItem].join(' ')}>
+                    <Product data={product} key={i}/>
+                </div>
+            )) 
+        )
+    }
+    
     return (
         <div className={classes.Products}>
-            {
-                props.data.map((p, i) => (
-                    <Product key={i} data={p}/>
-                ))
-            }
+            {products}
         </div>
     )
 }

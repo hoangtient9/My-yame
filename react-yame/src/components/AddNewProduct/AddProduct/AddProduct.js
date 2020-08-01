@@ -120,7 +120,7 @@ const AddProduct = props => {
         }
     
         const add = {
-          addData: formData,
+          ...formData,
           date: new Date()
         };
 

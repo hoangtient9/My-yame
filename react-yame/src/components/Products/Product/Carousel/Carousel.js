@@ -5,7 +5,7 @@ import classes from './Carousel.module.scss';
 const Carousel = props => {
     const [index, setIndex] = useState(0);
     const [firstRun, setFirstRun] = useState(true)
-    const [heightState, setHeightState] = useState(0);
+    const [heightState, setHeightState] = useState(438);
     const myRef = useRef(null);
 
     const goNext = useCallback(() => {
