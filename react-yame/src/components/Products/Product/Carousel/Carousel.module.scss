@@ -3,6 +3,10 @@
   width: 100%;
   overflow: hidden;
   margin: 0 auto;
+
+  &:hover {
+    border-radius: 5px;
+   }
 }
 
 .Slide {
@@ -11,8 +15,16 @@
   left: 0;
   width: 100%;
 
+  &:hover {
+    border-radius: 5px;
+   }
+
   img {
     width: 100%;
+
+    &:hover {
+     border-radius: 5px;
+    }
   }
 }
 

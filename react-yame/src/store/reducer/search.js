@@ -3,7 +3,8 @@ import {updateObject} from '../../shared/ultility';
 
 const initialState = {
     loading: false,
-    products: null,
+    products: [],
+    error: null
 }
 
 const fetchSearchStart = (state, action) => {
@@ -17,7 +18,10 @@ const fetchSearchSuccess = (state, action) => {
 }
 
 const fetchSearchFail = (state, action) => {
-    return updateObject(state, {loading: false})
+    return updateObject(state, {
+        loading: false,
+        error: action.error
+    })
 }
 
 const reducer = (state = initialState, action) => {

@@ -18,9 +18,10 @@ export const fetchSearchFail = (error) => {
     }
 }
 
-export const fetchSearch = (query) => {
+export const fetchSearch = (key,query) => {
     return {
         type: actionTypes.FETCH_SEARCH,
-        query: query
+        query: query,
+        key: key
     }
 }

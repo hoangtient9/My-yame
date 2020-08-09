@@ -1,5 +1,6 @@
 .ProductInfo {
     width: 100%;
+
    > div {
        width: 100%;
        padding-top: 20px;
@@ -15,18 +16,19 @@
    }
 
    .ProductInfo__Head {
-    display: flex;
-    border-bottom: 1px solid #ccc;
-    flex-flow: wrap;
+        display: flex;
+        border-bottom: 1px solid #ccc;
+        flex-flow: wrap;
 
-    .HeadImage {
-        width: 100%;
-        padding: 15px;
+        .HeadImage {
+            width: 100%;
+            padding: 15px;
 
-        @media (min-width: 40rem) {
-            width: 35%;
+            @media (min-width: 768px) {
+                width: 30%;
+            }
+
         }
-    }
 
     .HeadInfo {
         width: 100%;
@@ -42,12 +44,15 @@
 
                 > h4 {
                     text-align: left;
+                    font-size: 1.25rem;
+                    margin: 10px;
                 }
 
                 > h5 {
                     text-align: left;
+                    margin: 0 10px;
                     color: #ee4266;
-                    font-size: 1rem;
+                    font-size: 18px;
                 }
 
                 > ul {
@@ -56,36 +61,50 @@
 
                     > li {
                         display: flex;
+                        align-items: center;
                         border-top: 1px solid #ccc;
                         padding: 5px 0;
 
                         > div:first-child {
-                            width: 30%;
+                            width: 60%;
+                            
+                            > p {
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                width: 100%;
+                                
+                            }
+                            // flex: 1;
                             text-align: left;
                         }
 
                         > div:nth-child(2) {
-                            width: 30%;
+                            width: 20%;
+                            flex-shrink: 1;
                             text-align: left;
                         }
-                        > div:nth-child(3) {
-                            width: 20%;
-                        }
+                        // > div:nth-child(3) {
+                        //     width: 20%;
+                        //     flex-shrink: 1;
+                        // }
                         > div:last-child {
                             width: 20%;
+                            flex-shrink: 1;
 
                             > button {
                                 background: #039be5;
                                 padding: 10px 15px;
                                 outline: none;
                                 border: 1px solid #039be5;
-                                box-shadow: 2px 2px 1px #ccc;
-                                border-radius: 3px;
+                                
+                                border-radius: 6px;
                                 cursor: pointer;
 
                                 &:hover,
                                 &:active {
-                                    background: blueviolet;
+                                    background: #8a2be2;
+                                    border: 1px solid #8a2be2;
+                                    box-shadow: 0 7px 10px rgba(0, 0, 0, .3);
                                     transition: all 0.6s ease-in-out;
                                 }
 
@@ -95,8 +114,9 @@
                 }
 
                 @media (min-width: 40rem) {
-                    width: 65%;
+                    width: 70%;
                 }
+
             }
 
             .HeadInfo__Descreption {
@@ -106,7 +126,8 @@
                 padding-bottom: 10px;
 
                 @media (min-width: 40rem) {
-                    width: 35%;
+                    width: 30%;
+                    
                 }
             }
         }
@@ -121,8 +142,17 @@
                 width: 30%;
                 padding: 10px 15px;
 
+                
+
                 img {
                     width: 100%;
+                    cursor: pointer;
+                    border-radius: 5px;
+
+                    &:hover {
+                        background: #f5f5f5;
+                        box-shadow: 0 10px 20px rgba(0, 0, 0, .3);
+                    }
                 }
 
                 @media (min-width: 40rem) {
@@ -131,11 +161,11 @@
             }
         }
 
-        @media (min-width: 40rem) {
+        @media (min-width: 768px) {
             display: flex;
             flex-flow: wrap;
             align-items: center;
-            width: 65%;
+            width: 70%;
         }
     }
    }

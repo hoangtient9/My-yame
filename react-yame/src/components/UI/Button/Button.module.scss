@@ -1,13 +1,23 @@
 .Button {
     border: none;
-    padding: 10px;
-    margin: 10px auto;
-    color: white;
-    font: inherit;
-    background: transparent;
-    font-weight: bold;
+	width: 150px;
+    height: 50px;
     outline: none;
-    cursor: pointer;
+	border-radius: 10px;
+	font-family: "Montserrat";
+	font-weight: 700;
+	font-size: 0.9rem;
+	margin: 10px;
+	cursor: pointer;
+	box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.008),
+		0 6.7px 5.3px rgba(0, 0, 0, 0.012), 0 12.5px 10px rgba(0, 0, 0, 0.015),
+		0 22.3px 17.9px rgba(0, 0, 0, 0.018), 0 41.8px 33.4px rgba(0, 0, 0, 0.022),
+        0 100px 80px rgba(0, 0, 0, 0.03);
+
+    &:hover {
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .3);
+    }
+
 
     &:first-of-type {
         margin-left: 0;
@@ -15,17 +25,20 @@
     }
 
     &:disabled {
-        color: #ccc;
+        // color: #ccc;
+        background: #ccc;
         cursor: not-allowed;
     }
 }
 
 .Success {
-    color: #5C9210;
+    background: #445fe7;
+    color: #fff;
 }
 
 .Danger {
-    color: #944317;
+    background: #ff3e3e;
+	color: #ffffff;
 }
 
 .BtnAuth {

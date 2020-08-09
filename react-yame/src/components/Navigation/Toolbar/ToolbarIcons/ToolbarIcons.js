@@ -1,15 +1,17 @@
 import React from 'react'
 
 import classes from './ToolbarIcons.module.scss';
+import { Link } from 'react-router-dom';
+import {useSelector} from 'react-redux'
 
 const ToolbarIcons = props => {
+    const checkoutData = useSelector(state => state.checkout.checkout);
+    
     return (
         <div className={classes.ToolbarIcons}>
             <ul>
-                <li>
-                    <a href='#34'>
-                        <span className="material-icons">search</span>
-                    </a>
+                <li onClick={props.show}>
+                    <span className="material-icons">search</span>
                 </li>
                 <li>
                     <a href='#5'>
@@ -17,10 +19,10 @@ const ToolbarIcons = props => {
                     </a>
                 </li>
                 <li>
-                    <a href='#6'>
+                    <Link to='/checkout'>
                         <span className="material-icons">shopping_bag</span>
-                        <div>1</div>
-                    </a>
+                        <div>{checkoutData ? checkoutData.length : 0}</div>
+                    </Link>
                 </li>
             </ul>
             <div onClick={props.clicked}>

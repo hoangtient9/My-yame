@@ -5,8 +5,7 @@ import * as actions from '../actions';
 export function* fetchSearchSaga(action) {
     yield put(actions.fetchSearchStart())
     try {
-        const fetchProducts = yield axios.get('/products.json?orderBy="deliveryMethod"&equalTo="T-shirt"&limitToFirst=20&print=pretty');
-        console.log(fetchProducts)
+        const fetchProducts = yield axios.get(`/products.json?orderBy="${action.key}"&startAt="${action.query}"&endAt="${action.query}\uf8ff"&once="value"&limitToLast=20&print=pretty`);
         const products = [];
         for (let key in fetchProducts.data) {
             products.push({
@@ -14,10 +13,9 @@ export function* fetchSearchSaga(action) {
                 id:key
             })
         }
-        console.log(products)
         yield put(actions.fetchSearchSuccess(products))
 
     } catch (error) {
-        yield put(actions.fetchSearchFail(error))
+        yield put(actions.fetchSearchFail(error.message))
     }
 }

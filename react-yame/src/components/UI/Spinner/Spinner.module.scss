@@ -43,23 +43,30 @@
         background: #ffffff;
     }
 }
+
+.Spinner {
+    width: 100%;
+    min-height: 40vh;
+}
+
 @-webkit-keyframes load3 {
-0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
-100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-}
-}
+
 @keyframes load3 {
-0% {
-    -webkit-transform: rotate(0deg);
-    transform: rotate(0deg);
-}
-100% {
-    -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
-}
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }

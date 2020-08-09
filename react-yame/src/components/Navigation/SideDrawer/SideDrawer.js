@@ -15,9 +15,9 @@ const SideDrawer = props => {
     return (
         <Fragment>
             <Backdrop show={props.open} clicked={props.closed} />
-            <div className={attachedClasses.join(' ')}>
-                <div onClick={props.closed}>
-                    <span className="material-icons">clear</span>
+            <div className={attachedClasses.join(' ')} >
+                <div>
+                    <span className="material-icons" onClick={props.closed}>clear</span>
                 </div>
                 <nav onClick={props.closed}>
                     <NavigationItems />

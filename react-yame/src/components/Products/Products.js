@@ -12,7 +12,7 @@ const Products = props => {
         ))   
     );
 
-    if (props.data.length <= 2){
+    if (props.data.length <= 2 && props.big){
         products = (
             props.data.map((product, i) => (
                 <div key={i} className={[classes.Item, classes.BigItem].join(' ')}>

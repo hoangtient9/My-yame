@@ -28,12 +28,13 @@ const AddProduct = props => {
           price: {
             elementType: 'input',
             elementConfig: {
-              type: 'text',
+              type: 'number',
               placeholder: 'Price'
             },
             value: '',
             validation: {
               required: true,
+              isNumeric: true
             },
             valid: false,
             touched: false
@@ -95,9 +96,9 @@ const AddProduct = props => {
             elementConfig: {
               options: [
                 {value: 'T-shirt', displayValue: 'T-shirt'},
-                {value: 'Shirts', displayValue: 'Shirts'},
-                {value: 'Trousers', displayValue: 'Trousers'},
-                {value: 'Shoes', displayValue: 'Shoes'},
+                {value: 'Shirt', displayValue: 'Shirt'},
+                {value: 'Pant', displayValue: 'Pant'},
+                {value: 'Shoe', displayValue: 'Shoe'},
                 {value: 'Sandal', displayValue: 'Sandal'},
                 {value: 'Balo', displayValue: 'Balo'},
 
@@ -116,8 +117,11 @@ const AddProduct = props => {
     
         const formData = {};
         for (let formElementIdentifier in addForm) {
+          formElementIdentifier === 'price' ? formData[formElementIdentifier] = Number(addForm[formElementIdentifier].value) :
           formData[formElementIdentifier] = addForm[formElementIdentifier].value
         }
+
+        console.log(formData)
     
         const add = {
           ...formData,

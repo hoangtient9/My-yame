@@ -9,7 +9,7 @@ const Poster = props => {
             {props.data.map((poster, i) => (
                 <div key={i} className={classes.PosterItem}>
                     <div>
-                        <h4>Mo ban 10 - 07</h4>
+                        <h4>{poster.addData.title}</h4>
                     </div>
                     <div>
                         <img src={poster.addData.image} alt="anh loi" loading='lazy'/>

@@ -8,6 +8,11 @@
 
         > li {
             margin-left: 10px;
+            cursor: pointer;
+
+            > span {
+                color: #868995;
+            }
 
             > a {
                 color: #868995;

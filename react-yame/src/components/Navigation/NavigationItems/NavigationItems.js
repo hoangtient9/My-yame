@@ -7,12 +7,12 @@ import NavigationItem from './NavigationItem/NavigationItem';
 
 const NavigationItems = (props) => (
     <ul className={classes.NavigationItems}>
-        <NavigationItem title='shirt'>Shirt</NavigationItem>
-        <NavigationItem title='pant'>Pant</NavigationItem>
-        <NavigationItem title='shoe'>Shoe</NavigationItem>
-        <NavigationItem title='balo'>Balo</NavigationItem>
-        <NavigationItem title='t-shirt'>T-shirt</NavigationItem>
-        <NavigationItem title='sandal'>Sandal</NavigationItem>
+        <NavigationItem title='Shirt'>Shirt</NavigationItem>
+        <NavigationItem title='Pant'>Pant</NavigationItem>
+        <NavigationItem title='Shoe'>Shoe</NavigationItem>
+        <NavigationItem title='Balo'>Balo</NavigationItem>
+        <NavigationItem title='T-shirt'>T-shirt</NavigationItem>
+        <NavigationItem title='Sandal'>Sandal</NavigationItem>
     </ul>
 )
 
