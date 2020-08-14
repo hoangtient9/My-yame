@@ -3,7 +3,7 @@ import {updateObject} from '../../shared/ultility';
 
 const initialState = {
     loading: false,
-    checkout: [],
+    checkout: null,
     error: null
 }
 

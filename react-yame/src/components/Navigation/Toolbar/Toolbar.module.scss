@@ -19,8 +19,6 @@
         height: 100%;
         padding: 0 15px;
         
-        
-        
         @media (min-width: 40rem) {
             max-width: 720px;
             margin: 0 auto;
@@ -30,7 +28,7 @@
             max-width: 1400px;
         }
 
-        .Logo {
+        > .Logo {
             height: 80%;
         }
 
@@ -76,27 +74,20 @@
 
         @media (min-width: 40rem) {
             max-width: 720px;
-            // margin: 0 auto;
         }
         @media (min-width: 60rem) {
             justify-content: space-evenly;
             max-width: 1140px;
         }
 
-        
-
         > div:first-child {
             width: 90%;
-            // height: 100%;
              
             > input {
                 width: 100%;
-                // height: 100%;
                 outline: none;
-                // border-color: initial;
                 border: none;
                 box-shadow: none;
-                // height: 43px;
                 font-size: 20px;
 
                 @media (min-width: 60rem) {
@@ -115,6 +106,5 @@
 
 .SearchHidden {
     opacity: 0;
-    // z-index: 50;
     visibility: hidden;
 }

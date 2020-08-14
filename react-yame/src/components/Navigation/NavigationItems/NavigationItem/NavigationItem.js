@@ -7,12 +7,13 @@ const NavigationItem = props => {
     return (
         <li className={classes.NavigationItem} >
             <NavLink 
-                to={`/search?k=deliveryMethod&q=${props.title}`} 
+                to={`/search?k=categorySearch&q=${props.title}`} 
                 activeClassName={classes.active} 
                 isActive={(match, location) => {
                     if(!match) return false
                     return `${location.pathname}${location.search}` === `/search?k=deliveryMethod&q=${props.title}`
-                }}>{props.children}</NavLink>
+                }}>{props.children}
+            </NavLink>
         </li>
     )
 }

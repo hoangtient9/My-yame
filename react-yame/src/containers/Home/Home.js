@@ -8,6 +8,7 @@ import * as actions from '../../store/actions/index';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import axios from '../../axios';
 import Spinner from '../../components/UI/Spinner/Spinner';
+import NotFound from '../../components/NotFound/NotFound';
 
 const Home = props => {
     const dispatch = useDispatch();
@@ -33,6 +34,12 @@ const Home = props => {
                 <BigPoster link={bigPosterData[1].addData.image} />
                 <Products data={productsData.slice(8)}/>
             </Fragment>
+        )
+    }
+
+    if (!loading && !bigPosterData) {
+        home = (
+            <NotFound>some problems</NotFound>
         )
     }
 

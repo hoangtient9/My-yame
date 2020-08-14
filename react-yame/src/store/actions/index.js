@@ -25,4 +25,32 @@ export {
     getCheckoutFail,
     getCheckout,
     setCheckout
-} from './checkout'
+} from './checkout';
+
+export {
+    purchaseInit,
+    purchaseProduct,
+    purchaseProductStart,
+    purchaseProductSuccess,
+    purchaseProductFail,
+    fetchOrders,
+    fetchOrdersStart,
+    fetchOrdersSuccess,
+    fetchOrdersFail
+} from './orders';
+
+export {
+    auth,
+    authLogout,
+    setAuthRedirectPath,
+    authCheckState,
+    logoutSucceed,
+    authStart,
+    authSuccess,
+    authFail,
+    checkAuthTimeout,
+    resetPasswordStart,
+    resetPasswordSuccess,
+    resetPasswordFail,
+    resetPassword
+} from './auth'

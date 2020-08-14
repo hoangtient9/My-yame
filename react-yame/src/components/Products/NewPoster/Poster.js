@@ -15,7 +15,7 @@ const Poster = props => {
                         <img src={poster.addData.image} alt="anh loi" loading='lazy'/>
                     </div>
                     <div className={classes.ListImage}>
-                        {poster.addData.listImage.split(';').map((a, ind) => (
+                        {poster.addData.listImage.map((a, ind) => (
                             <div key={ind}>
                                 <img src={a} alt='anh loi' loading='lazy'/>
                             </div>

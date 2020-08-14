@@ -1,5 +1,6 @@
 import React, { Fragment, useCallback, useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
 import ProductDetail from '../../components/ProductDetail/ProductDetail';
 import axios from '../../axios';
@@ -8,6 +9,8 @@ import * as actions from '../../store/actions/index';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
 const ProductInfo = props => {
+
+    const history = useHistory();
     const dispatch = useDispatch();
     const onFetchProduct = useCallback((id) => dispatch(actions.fetchProductInfo(id)), [dispatch]);
     const onGetCheckout = useCallback(() => dispatch(actions.getCheckout()), [dispatch]);
@@ -51,7 +54,7 @@ const ProductInfo = props => {
             onSetCheckout([data])
         }
         onGetCheckout()
-        props.history.push('/checkout')
+        history.push('/checkout')
     }
 
 

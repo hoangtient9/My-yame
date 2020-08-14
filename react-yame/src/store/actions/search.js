@@ -5,10 +5,11 @@ export const fetchSearchStart = () => {
         type: actionTypes.FETCH_SEARCH_START
     }
 }
-export const fetchSearchSuccess = (data) => {
+export const fetchSearchSuccess = (data, last) => {
     return {
         type: actionTypes.FETCH_SEARCH_SUCCES,
         products: data,
+        last: last
     }
 }
 export const fetchSearchFail = (error) => {
@@ -18,10 +19,12 @@ export const fetchSearchFail = (error) => {
     }
 }
 
-export const fetchSearch = (key,query) => {
+export const fetchSearch = (key, query, oldProducts, lastProduct) => {
     return {
         type: actionTypes.FETCH_SEARCH,
         query: query,
-        key: key
+        key: key,
+        oldProducts: oldProducts,
+        lastProduct: lastProduct
     }
 }

@@ -91,7 +91,7 @@ const AddProduct = props => {
             valid: false,
             touched: false
           },
-          deliveryMethod: {
+          category: {
             elementType: 'select',
             elementConfig: {
               options: [
@@ -130,7 +130,13 @@ const AddProduct = props => {
 
         console.log(add)
 
-        axios.post('https://chatbot-2bd64.firebaseio.com/products.json', add)
+        axios.post(`https://firestore.googleapis.com/v1/projects/chatbot-2bd64/databases/(default)/documents/myShop`, {
+          fields: { 
+            name: { stringValue: add.name }, 
+            created: { timestampValue: new Date() }, 
+            modified: { timestampValue: new Date() } 
+        }
+        })
     
       }
 

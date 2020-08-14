@@ -24,6 +24,10 @@
             width: 100%;
             padding: 15px;
 
+            > img {
+                width: 100%;
+            }
+
             @media (min-width: 768px) {
                 width: 30%;
             }

@@ -21,7 +21,6 @@
             color: white;;
         }
     }
-    // transition: 0.5s;
 
     @media (min-width: 60rem) {
         display: none;
@@ -30,12 +29,8 @@
 
 .Open {
     transform: translateX(0);
-    // width: 300px;
-
 }
 
 .Close {
     transform: translateX(100%);
-    // width: 0;
-
 }

@@ -1,21 +1,22 @@
-import React, { useState, useRef, useEffect} from 'react';
+import React, { useState, useRef, useEffect, useLayoutEffect} from 'react';
 
+import {useLocation, useParams} from 'react-router-dom'
 
 import Toolbar from '../../components/Navigation/Toolbar/Toolbar';
 import SideDrawer from '../../components/Navigation/SideDrawer/SideDrawer';
 import Footer from '../../components/Footer/Footer';
 import classes from './Layout.module.scss';
 
-
 const Layout = props => {
     const [showSideDrawer, setShowSideDrawer] = useState(false)
 
     const myref = useRef(null) 
+    const { pathname } = useLocation();
+    const params = useParams();
 
-    useEffect(() => {
-        // document.body.scrollTop = 0;
+    useLayoutEffect(() => {
         window.scrollTo(0, 0)
-    }, [props.children])
+    }, [pathname, params])
     // let windowOffset = 0;
 
     const sideDrawerCloseHandler = () => {

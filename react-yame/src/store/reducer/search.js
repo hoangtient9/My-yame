@@ -3,8 +3,9 @@ import {updateObject} from '../../shared/ultility';
 
 const initialState = {
     loading: false,
-    products: [],
-    error: null
+    products: null,
+    error: null,
+    lastProduct: null
 }
 
 const fetchSearchStart = (state, action) => {
@@ -13,7 +14,8 @@ const fetchSearchStart = (state, action) => {
 const fetchSearchSuccess = (state, action) => {
     return updateObject(state, {
         products: action.products,
-        loading: false
+        loading: false,
+        lastProduct: action.last !== null ? action.last : state.lastProduct
     })
 }
 

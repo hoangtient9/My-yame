@@ -14,9 +14,9 @@ const ToolbarIcons = props => {
                     <span className="material-icons">search</span>
                 </li>
                 <li>
-                    <a href='#5'>
+                    <Link to='/auth'>
                         <span className="material-icons">perm_identity</span>
-                    </a>
+                    </Link>
                 </li>
                 <li>
                     <Link to='/checkout'>

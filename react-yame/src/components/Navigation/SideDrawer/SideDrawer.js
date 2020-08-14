@@ -4,7 +4,6 @@ import classes from './SideDrawer.module.scss';
 import NavigationItems from '../NavigationItems/NavigationItems';
 import Backdrop from '../../UI/Backdrop/Backdrop';
 
-
 const SideDrawer = props => {
 
     let attachedClasses = [classes.SideDrawer, classes.Close];

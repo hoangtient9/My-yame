@@ -1,10 +1,15 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {useHistory} from 'react-router-dom'
 
 import classes from './ContactData.module.scss';
 import Input from '../../UI/Input/Input';
 import Button from '../../UI/Button/Button';
 import {updateObject, checckValidity} from '../../../shared/ultility';
+import * as actions from '../../../store/actions/index';
 import axios from 'axios';
+import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
+
 
 const ContactData = props => {
 
@@ -147,103 +152,114 @@ const ContactData = props => {
             touched: false
           },
         }
-      )
-      const [formIsValid, setFormIsValid] = useState(false)
-
-      const addHandler = (event) => {
-        event.preventDefault();
+      );
     
-        const formData = {};
-        for (let formElementIdentifier in contactForm) {
-          formData[formElementIdentifier] = contactForm[formElementIdentifier].value
-        }
+    const [formIsValid, setFormIsValid] = useState(false)
+    const dispatch = useDispatch();
+    const onProductOrder = useCallback((data, token) => dispatch(actions.purchaseProduct(data, token)), [dispatch]);
+    const onSetAuthRedirectPath = useCallback(path => dispatch(actions.setAuthRedirectPath(path)), [dispatch]);
+    const isAuthenticated = useSelector(state => state.auth.token != null);
+    const token = useSelector(state =>  state.auth.token);
+    const userId = useSelector(state => state.auth.userId); 
 
-        console.log(formData)
-    
-        const add = {
-          ...formData,
-          date: new Date()
-        };
+    const history = useHistory()
 
-        console.log(add)
-
-        // axios.post('https://chatbot-2bd64.firebaseio.com/products.json', add)
-    
+    const orderHandler = (event) => {
+      event.preventDefault();
+  
+      const formData = {};
+      for (let formElementIdentifier in contactForm) {
+        formData[formElementIdentifier] = contactForm[formElementIdentifier].value
       }
-
-      const formChangedHandler = (event, inputIdentifier) => {
-
-        const updatedFormElement = updateObject(contactForm[inputIdentifier], {
-          value: event.target.value,
-          valid : checckValidity(event.target.value, contactForm[inputIdentifier].validation),
-          touched: true
-        })
-        
-        const updatedOrderForm = updateObject(contactForm, {
-          [inputIdentifier]: updatedFormElement
-        });
-    
-        let formValid = true;
-        for (let inputIdentifier in updatedOrderForm) {
-
-          formValid = (updatedOrderForm[inputIdentifier].label === 'Address' && !checkedState) || (updatedOrderForm[inputIdentifier].elementType === 'select' && checkedState) ? true && formValid :
-            updatedOrderForm[inputIdentifier].valid && formValid;
-        }
-    
-        setContactForm(updatedOrderForm)
-        setFormIsValid(formValid)
+  
+      const order = {
+        contactData: formData,
+        orderData: props.checkout,
+        date: new Date(),
+        totalPrice: props.checkout.reduce((a,b) => a + (b.price * b.quantity), 0),
+        userId: userId
+      };
+      if(isAuthenticated){
+        onProductOrder(order, token)
+      } else {
+        onSetAuthRedirectPath('/checkout')
+        history.push('/auth')
       }
+    }
 
-      const checkHandle = () => {
-        setCheckedState(!checkedState)
-        let formValid = true;
-        for (let inputIdentifier in contactForm) {
+    const formChangedHandler = (event, inputIdentifier) => {
 
-          formValid = (contactForm[inputIdentifier].label === 'Address' && checkedState) || (contactForm[inputIdentifier].elementType === 'select' && !checkedState) ? true && formValid :
-          contactForm[inputIdentifier].valid && formValid;
-        }
-        setFormIsValid(formValid)
+      const updatedFormElement = updateObject(contactForm[inputIdentifier], {
+        value: event.target.value,
+        valid : checckValidity(event.target.value, contactForm[inputIdentifier].validation),
+        touched: true
+      })
+      
+      const updatedOrderForm = updateObject(contactForm, {
+        [inputIdentifier]: updatedFormElement
+      });
+  
+      let formValid = true;
+      for (let inputIdentifier in updatedOrderForm) {
+
+        formValid = (updatedOrderForm[inputIdentifier].label === 'Address' && !checkedState) || (updatedOrderForm[inputIdentifier].elementType === 'select' && checkedState) ? true && formValid :
+          updatedOrderForm[inputIdentifier].valid && formValid;
       }
+  
+      setContactForm(updatedOrderForm)
+      setFormIsValid(formValid)
+    }
+
+    const checkHandle = () => {
+      setCheckedState(!checkedState)
+      let formValid = true;
+      for (let inputIdentifier in contactForm) {
+
+        formValid = (contactForm[inputIdentifier].label === 'Address' && checkedState) || (contactForm[inputIdentifier].elementType === 'select' && !checkedState) ? true && formValid :
+        contactForm[inputIdentifier].valid && formValid;
+      }
+      setFormIsValid(formValid)
+    }
     
-      const formElementsArray = [];
-      for (let key in contactForm) {
-        formElementsArray.push({
-          id: key,
-          config: contactForm[key]
-        })
-      }
+    const formElementsArray = [];
+    for (let key in contactForm) {
+      formElementsArray.push({
+        id: key,
+        config: contactForm[key]
+      })
+    }
 
-      let form = (
-        <form onSubmit={addHandler}>
+    let form = (
+      <form onSubmit={orderHandler}>
 
-          {formElementsArray.map(formElement =>   
-              <Input 
-                name={formElement.config.label}
-                key={formElement.id}
-                elementType={formElement.config.elementType} 
-                elementConfig={formElement.config.elementConfig} 
-                value={formElement.config.value} 
-                changed={event => formChangedHandler(event, formElement.id)}
-                inValid={!formElement.config.valid}
-                shouldValidate={formElement.config.validation}
-                touched={formElement.config.touched}
-                clicked={checkHandle}
-                checked={checkedState}/> 
-          )}
-          <Button 
-            btnType='Success' 
-            disabled={!formIsValid && props.checkout !== null}
-            >Order</Button>
-        </form>
-      )
+        {formElementsArray.map(formElement =>   
+            <Input 
+              name={formElement.config.label}
+              key={formElement.id}
+              elementType={formElement.config.elementType} 
+              elementConfig={formElement.config.elementConfig} 
+              value={formElement.config.value} 
+              changed={event => formChangedHandler(event, formElement.id)}
+              inValid={!formElement.config.valid}
+              shouldValidate={formElement.config.validation}
+              touched={formElement.config.touched}
+              clicked={checkHandle}
+              checked={checkedState}/> 
+        )}
+        <Button 
+          btnType='Success' 
+          disabled={!formIsValid && props.checkout !== null}
+          >Order</Button>
+      </form>
+    )
 
-      return (
-        <div className={classes.ContactData}>
-          <h4>Contact Data</h4>
-          {form}
-          <Button btnType='Danger' clicked={props.cancell}>Cancel</Button>
-        </div>
-      )
+    return (
+      <div className={classes.ContactData}>
+        <h4>Contact Data</h4>
+        {form}
+        <Button btnType='Danger' clicked={props.cancell}>Cancel</Button>
+      </div>
+    )
 }
 
-export default ContactData;
+export default withErrorHandler(ContactData, axios);

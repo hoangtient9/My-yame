@@ -13,13 +13,18 @@ import home from './store/reducer/home';
 import search from './store/reducer/search';
 import productInfo from './store/reducer/productInfo';
 import checkout from './store/reducer/checkout';
-import {watchProducts, watchSearch, watchProductInfo, watchCheckout} from './store/sagas/index';
+import orders from './store/reducer/orders';
+import auth from './store/reducer/auth';
+
+import {watchProducts, watchSearch, watchProductInfo, watchCheckout, watchOrders, watchAuth} from './store/sagas/index';
 
 const rootReducer = combineReducers({
   home: home,
   search: search,
   productInfo: productInfo,
-  checkout: checkout
+  checkout: checkout,
+  orders: orders,
+  auth: auth
 
 });
 
@@ -32,6 +37,8 @@ sagaMiddleware.run(watchProducts)
 sagaMiddleware.run(watchProductInfo)
 sagaMiddleware.run(watchSearch)
 sagaMiddleware.run(watchCheckout)
+sagaMiddleware.run(watchOrders)
+sagaMiddleware.run(watchAuth)
 
 const app = (
   <Provider store={store}>

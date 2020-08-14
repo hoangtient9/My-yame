@@ -12,7 +12,6 @@ const CheckoutData = props => (
         <div>
             <ContactData checkout={props.data} cancell={props.cancell}/>
         </div>
-
     </div>
 )
 

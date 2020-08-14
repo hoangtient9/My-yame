@@ -5,16 +5,16 @@ import * as actions from '../actions';
 export function* getCheckoutSaga(action) {
     try {
         yield actions.getCheckoutStart()
-        const checkoutData = yield sessionStorage.getItem('checkoutData');
+        const checkoutData = yield localStorage.getItem('checkoutData');
         
-        yield put(actions.getCheckoutSuccess(JSON.parse(checkoutData === null ? [] : checkoutData)))
+        yield put(actions.getCheckoutSuccess(JSON.parse(checkoutData)))
     } catch (error) {
         yield put(actions.getCheckoutFail(error))
     }
 }
 export function* setCheckoutSaga(action) {
     try {
-        yield sessionStorage.setItem('checkoutData', JSON.stringify(action.data));
+        yield localStorage.setItem('checkoutData', JSON.stringify(action.data));
     } catch (error) {
         yield put(actions.getCheckoutFail(error.message))
     }

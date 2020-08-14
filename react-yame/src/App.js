@@ -1,7 +1,7 @@
-import React, { Suspense, lazy} from 'react';
-// import {useDispatch} from 'react-redux'
-import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
-// import * as actions from './store/actions/index';
+import React, { Suspense, lazy, useEffect, useCallback} from 'react';
+import {useDispatch} from 'react-redux'
+import { Switch, Route, Redirect } from 'react-router-dom';
+import * as actions from './store/actions/index';
 
 import Layout from './hoc/Layout/Layout';
 import Spinner from './components/UI/Spinner/Spinner';
@@ -12,15 +12,19 @@ const AddProduct = lazy(() => import('./components/AddNewProduct/AddProduct/AddP
 const AddPoster = lazy(() => import('./components/AddNewProduct/AddPoster/AddPoster'));
 const ProductInfo = lazy(() => import('./containers/ProductInfo/productInfo'));
 const Checkout = lazy(() => import('./containers/Checkout/Checkout'));
+const Orders = lazy(() => import('./containers/Orders/Orders'));
+const Auth = lazy(() => import('./containers/Auth/Auth'));
 
 const App = props =>{
 
-  // const dispatch = useDispatch();
-  //   const onGetCheckout = useCallback(() => dispatch(actions.getCheckout()), [dispatch]);
+  const dispatch = useDispatch();
+    const onGetCheckout = useCallback(() => dispatch(actions.getCheckout()), [dispatch]);
+    const onAuthCheckState= useCallback(() => dispatch(actions.authCheckState()), [dispatch]);
 
-  //   useEffect(() => {
-  //     onGetCheckout()
-  //   }, [onGetCheckout])
+    useEffect(() => {
+      onGetCheckout()
+      onAuthCheckState()
+    }, [onGetCheckout, onAuthCheckState])
 
 
   return (
@@ -32,6 +36,8 @@ const App = props =>{
           <Route path='/addProduct' render={props => <AddProduct {...props}/>} />
           <Route path='/addPoster' render={props => <AddPoster {...props}/>} />
           <Route path='/checkout' render={props => <Checkout {...props}/>} />
+          <Route path='/orders' render={props => <Orders {...props}/>} />
+          <Route path='/auth' render={props => <Auth {...props}/>} />
 
           <Route path='/' exact render={props => <Home {...props}/>} />
           <Redirect to='/' />
@@ -41,4 +47,4 @@ const App = props =>{
   );
 }
 
-export default withRouter(App);
+export default App;

@@ -9,6 +9,10 @@ export function* fetchProductInfoSaga(action) {
         const fetchProduct = yield axios.get(`/products/${action.id}.json`);
         const product = {
             ...fetchProduct.data,
+            colors: fetchProduct.data.colors.split(';'),
+            image: fetchProduct.data.image.split(';'),
+            size: fetchProduct.data.size.split(';'),
+            listImage: fetchProduct.data.listImage.split(';'),
             id: action.id
         }
         console.log(product)

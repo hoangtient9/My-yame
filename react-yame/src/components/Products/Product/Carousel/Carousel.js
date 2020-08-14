@@ -28,15 +28,14 @@ const Carousel = props => {
     }
 
     return (
-        <div className={classes.Carousel} style={{height: `${heightState}px`}}>
+        <div className={classes.Carousel} style={{height: `${heightState}px`}} ref={myRef}>
             {props.slides.map((slide, i) => (
                 <div key={i} className={
                     i === index ? !firstRun ? [classes.Slide, classes.enterActive, classes.firstRun].join(' ') : [classes.Slide, classes.enterActive].join(' ') :
                     index === 0 && i === props.slides.length - 1 ? [classes.Slide, classes.exitActive, classes.firstRun].join(' ') :
                     i === index -1 ? [classes.Slide, classes.exitActive, classes.firstRun].join(' ') : [classes.Slide, classes.enter].join(' ')
-
                 }>
-                    <img ref={myRef} src={slide} alt='anh loi' loading='lazy'/>
+                    <img src={slide} alt='anh loi' loading='lazy'/>
                 </div> 
             ))}
         </div>

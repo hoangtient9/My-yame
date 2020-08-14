@@ -5,7 +5,7 @@ export const updateObject = (oldObject, updatedProperties) => {
     }
 }
 
-export const checckValidity = (value, rules) => {
+export const checckValidity = (value, rules, password) => {
     let isValid = true;
     if (!rules) {
       return true;
@@ -31,5 +31,15 @@ export const checckValidity = (value, rules) => {
       const pattern = /^\d+$/;
       isValid = pattern.test(value) && isValid;
     }
+
+    if(rules.isPassword) {
+      const pattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+      isValid = pattern.test(value) && isValid;
+    }
+    if(password) {
+      isValid = value === password && isValid;
+    }
     return isValid;
 };
+
+export const  convertNumber = numberData => numberData.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");

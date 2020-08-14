@@ -3,10 +3,10 @@
     width: 100%;
     align-items: center;
     
-    a {
+    > a {
         display: block;
-        text-decoration: none;
         padding: 16px 15px;
+        text-decoration: none;
         text-transform: uppercase;
         font-size: 1.8rem;
         text-align: center;
@@ -16,7 +16,6 @@
         &:active,
         &.active {
             color: #039be5;
-
         }
     }
 
@@ -26,8 +25,7 @@
         margin: 0;
         margin: 10px 0;
 
-        
-        a {
+        > a {
             font-size: 1rem;
             color: #f3f3f4;
     
