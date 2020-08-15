@@ -7,7 +7,6 @@ export function* purchaseProductSaga(action) {
     yield put(actions.purchaseProductStart())
     try {
         const response = yield axios.post('/orders1.json?auth=' + action.token, action.orderData)
-        console.log(response)
         yield put(actions.purchaseProductSuccess(response.data.name, action.orderData))
         yield localStorage.removeItem('checkoutData')
         yield put(actions.getCheckout())
@@ -28,7 +27,7 @@ export function* fetchOrdersSaga(action) {
                 id:key
             })
         }
-        yield put(actions.fetchOrdersSuccess(fetchedOrders))
+        yield put(actions.fetchOrdersSuccess(fetchedOrders.length === 0 ? null : fetchedOrders))
     } catch (error) {
         yield put(actions.fetchOrdersFail(error))
     }

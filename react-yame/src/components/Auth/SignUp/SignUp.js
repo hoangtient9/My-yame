@@ -10,58 +10,58 @@ import withErrorHandler from '../../../hoc/withErrorHandler/withErrorHandler';
 const SignUp = props => {
 
   const [signUpForm, setSignUpForm] = useState(
-      {
-        email: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'email',
-            placeholder: 'Your Email'
-          },
-          label: 'Email',
-          value: '',
-          validation: {
-            required: true,
-            isEmail: true
-          },
-          valid: false,
-          touched: false
+    {
+      email: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'email',
+          placeholder: 'Your Email'
         },
-        password: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'password',
-            placeholder: 'Your Password'
-          },
-          value: '',
-          label: 'Password',
-          validation: {
-            required: true,
-            isPassword: true
-          },
-          valid: false,
-          touched: false
+        label: 'Email',
+        value: '',
+        validation: {
+          required: true,
+          isEmail: true
         },
-        confirmPassword: {
-          elementType: 'input',
-          elementConfig: {
-            type: 'password',
-            placeholder: 'Confirm Password'
-          },
-          value: '',
-          label: 'Confirm Password',
-          validation: {
-            required: true,
-            isPassword: true
-          },
-          valid: false,
-          touched: false
-        }
+        valid: false,
+        touched: false
+      },
+      password: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'password',
+          placeholder: 'Your Password'
+        },
+        value: '',
+        label: 'Password',
+        validation: {
+          required: true,
+          isPassword: true
+        },
+        valid: false,
+        touched: false
+      },
+      confirmPassword: {
+        elementType: 'input',
+        elementConfig: {
+          type: 'password',
+          placeholder: 'Confirm Password'
+        },
+        value: '',
+        label: 'Confirm Password',
+        validation: {
+          required: true,
+          isPassword: true
+        },
+        valid: false,
+        touched: false
       }
-    );
+    }
+  );
     
   const [formIsValid, setFormIsValid] = useState(false)
 
-  const signUpHandler = (event) => {
+  const signUpHandler = event => {
     event.preventDefault();
     props.clicked(signUpForm.email.value, signUpForm.password.value, true)
   }
@@ -97,14 +97,9 @@ const SignUp = props => {
   }
 
   const passwordCheck = (
-    <div style={{
-      textAlign: "left",
-      padding: '10px'
-    }}>
+    <div className={classes.passwordCheck}>
       <p>Password must contain the following:</p>
-      <ul style={{
-        padding: '0 30px'
-      }}>
+      <ul>
         <li>A lowercase letter</li>
         <li>A capital (uppercase) letter</li>
         <li>A number letter</li>
@@ -114,7 +109,7 @@ const SignUp = props => {
     </div>
   );
 
-  let form = (
+  const form = (
     <form onSubmit={signUpHandler}>
 
       {formElementsArray.map(formElement =>   
@@ -137,7 +132,7 @@ const SignUp = props => {
       <Button 
         btnType='Success' 
         disabled={!formIsValid && props.checkout !== null}
-        >Sign Up</Button>
+      >Sign Up</Button>
     </form>
   )
 

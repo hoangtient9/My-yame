@@ -1,30 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
-import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
+import ReactDOM from 'react-dom';
+import {Provider} from 'react-redux';
 import createSagaMiddleware from 'redux-saga';
 import { BrowserRouter } from 'react-router-dom';
+import {createStore, applyMiddleware, compose, combineReducers} from 'redux';
 
-import './index.module.scss';
-import * as serviceWorker from './serviceWorker';
 import App from './App';
+import './index.module.scss';
 import home from './store/reducer/home';
-import search from './store/reducer/search';
-import productInfo from './store/reducer/productInfo';
-import checkout from './store/reducer/checkout';
-import orders from './store/reducer/orders';
 import auth from './store/reducer/auth';
+import orders from './store/reducer/orders';
+import search from './store/reducer/search';
+import checkout from './store/reducer/checkout';
+import * as serviceWorker from './serviceWorker';
+import productInfo from './store/reducer/productInfo';
 
 import {watchProducts, watchSearch, watchProductInfo, watchCheckout, watchOrders, watchAuth} from './store/sagas/index';
 
 const rootReducer = combineReducers({
+  auth: auth,
   home: home,
-  search: search,
-  productInfo: productInfo,
-  checkout: checkout,
   orders: orders,
-  auth: auth
+  search: search,
+  checkout: checkout,
+  productInfo: productInfo,
 
 });
 

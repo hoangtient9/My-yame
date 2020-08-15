@@ -1,5 +1,5 @@
-import React, { useCallback, Fragment} from 'react';
 import {useDispatch} from 'react-redux';
+import React, { useCallback, Fragment} from 'react';
 
 import classes from './CheckoutSummary.module.scss';
 import * as actions from '../../../store/actions/index';

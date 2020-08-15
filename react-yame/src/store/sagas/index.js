@@ -6,7 +6,13 @@ import {fetchSearchSaga} from './search';
 import {fetchProductInfoSaga} from './productInfo';
 import {getCheckoutSaga, setCheckoutSaga} from './checkout';
 import {purchaseProductSaga, fetchOrdersSaga} from './orders';
-import {logoutSaga, checkAuthTimeoutSaga, authUserSaga, authCheckStateSaga, resetPasswordSaga} from './auth';
+import {
+    logoutSaga, 
+    checkAuthTimeoutSaga, 
+    authUserSaga, authCheckStateSaga, 
+    resetPasswordSaga, 
+    authRefreshTokenSaga
+} from './auth';
 
 export function* watchProducts() {
     yield takeEvery(actionTypes.FETCH_PRODUCTS, fetchProductsSaga)
@@ -34,7 +40,8 @@ export function* watchAuth(){
         takeEvery(actionTypes.AUTH_INITIATE_LOGOUT, logoutSaga),
         takeEvery(actionTypes.AUTH_USER, authUserSaga),
         takeEvery(actionTypes.AUTH_CHECK_STATE, authCheckStateSaga),
-        takeEvery(actionTypes.RESET_PASSWORD, resetPasswordSaga)
+        takeEvery(actionTypes.RESET_PASSWORD, resetPasswordSaga),
+        takeEvery(actionTypes.REFRESH_TOKEN, authRefreshTokenSaga)
     ])
 }
 

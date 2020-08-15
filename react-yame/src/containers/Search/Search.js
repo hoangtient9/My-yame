@@ -11,11 +11,9 @@ import NotFound from '../../components/NotFound/NotFound';
 import Button from '../../components/UI/Button/Button';
 
 const Search = props => {
-
     const location = useLocation();
-
     const dispatch = useDispatch();
-    const onFetchSearch = useCallback((k, q, o, l) => dispatch(actions.fetchSearch(k, q, o, l)), [dispatch]);
+    const onFetchSearch = useCallback((type, query, oldProducts, lastProduct) => dispatch(actions.fetchSearch(type, query, oldProducts, lastProduct)), [dispatch]);
 
     const productsData = useSelector(state => state.search.products);
     const lastProductData = useSelector(state => state.search.lastProduct);

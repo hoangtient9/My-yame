@@ -29,14 +29,14 @@ const ResetPass = props => {
 
     const dispatch = useDispatch();
 
-    const onResetPassword = (email) => dispatch(actions.resetPassword(email));
+    const onResetPassword = useCallback(email => dispatch(actions.resetPassword(email)), [dispatch]);
 
-    const resetHandler = (event) => {
+    const resetHandler = event => {
         event.preventDefault();
         onResetPassword(resetPassForm.value)
     }
 
-    const formChangedHandler = (event) => {
+    const formChangedHandler = event => {
 
         const updatedFormElement = updateObject(resetPassForm, {
           value: event.target.value,

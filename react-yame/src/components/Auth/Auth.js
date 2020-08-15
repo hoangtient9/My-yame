@@ -1,8 +1,8 @@
 import React, {useState, useRef, Fragment} from 'react';
 
-import classes from './Auth.module.scss';
 import SignIn from './SignIn/SignIn';
 import SignUp from './SignUp/SignUp';
+import classes from './Auth.module.scss';
 import ResetPass from './SignIn/ResetPass/ResetPass';
 
 const Auth = props => {
@@ -42,7 +42,6 @@ const Auth = props => {
             </div>
         </div>
         </Fragment>
-
     )
 }
 

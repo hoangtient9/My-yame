@@ -33,6 +33,19 @@ export const logoutSucceed = () => {
     }
 }
 
+export const authRefreshToken = () => {
+    return {
+        type: actionTypes.REFRESH_TOKEN
+    }
+}
+export const authRefreshTokenSuccess = (token, userId) => {
+    return {
+        type: actionTypes.AUTH_REFRESH_TOKEN,
+        token: token,
+        userId: userId
+    }
+}
+
 export const checkAuthTimeout = (expirationTime) => {
     return {
         type: actionTypes.AUTH_CHECK_TIMEOUT,

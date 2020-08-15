@@ -35,7 +35,6 @@ const Input = props => {
                     ))}
                 </select>
             }
-
             break;
         default: inputElement = <input {...props.elementConfig} className={inputClasses.join(' ')} value={props.value} onChange={props.changed}/>
             break;

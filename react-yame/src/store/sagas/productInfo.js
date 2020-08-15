@@ -15,7 +15,6 @@ export function* fetchProductInfoSaga(action) {
             listImage: fetchProduct.data.listImage.split(';'),
             id: action.id
         }
-        console.log(product)
         yield put(actions.fetchProductInfoSuccess(product))
     } catch (error) {
         yield put(actions.fetchProductInfoFail(error.message))

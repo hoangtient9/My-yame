@@ -1,7 +1,8 @@
 import React from 'react';
+
+import { Link } from 'react-router-dom';
 import classes from './Logo.module.scss';
 import logoImage from '../../assets/images/logo.png';
-import { Link } from 'react-router-dom';
 
 const logo = () => (
   <div className={classes.Logo}>

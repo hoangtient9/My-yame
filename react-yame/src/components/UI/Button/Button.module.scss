@@ -21,11 +21,9 @@
 
     &:first-of-type {
         margin-left: 0;
-        // padding-left: 0;
     }
 
     &:disabled {
-        // color: #ccc;
         background: #ccc;
         cursor: not-allowed;
     }
@@ -42,11 +40,10 @@
 }
 
 .BtnAuth {
-    // border: 1px solid #ccc;
     border-radius: 3px;
-    box-shadow: 2px 2px 3px #966909;
     background: #944317;
     color: white;
+    box-shadow: 2px 2px 3px #966909;
 
     &:first-of-type {
         padding: 10px;
@@ -55,9 +52,8 @@
 
     &:disabled {
         border: 1px solid #ccc;
-        // border: none;
         color: #888;
         background: #C7C6C6;
         cursor: not-allowed;
-      }
+    }
 }

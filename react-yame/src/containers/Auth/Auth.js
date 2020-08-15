@@ -12,10 +12,9 @@ const Auth = props => {
     const loading = useSelector(state => state.auth.loading);
     const error = useSelector(state => state.auth.error); 
     const isAuthenticated = useSelector(state => state.auth.token != null);
-    const authRedirectPath = useSelector(state => state.auth.authRedirectPath); 
-    // const buildingBurger = useSelector(state => state.burgerBuilder.building); 
+    const authRedirectPath = useSelector(state => state.auth.authRedirectPath);
 
-    const onAuth = (email, password, isSignup) => dispatch(actions.auth(email, password, isSignup));
+    const onAuth = useCallback((email, password, isSignup) => dispatch(actions.auth(email, password, isSignup)), [dispatch]);
 
     let auth = <AuthCompoment clicked={onAuth} err={error}/>
     if (loading) {

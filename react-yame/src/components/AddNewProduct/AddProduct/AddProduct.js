@@ -120,15 +120,11 @@ const AddProduct = props => {
           formElementIdentifier === 'price' ? formData[formElementIdentifier] = Number(addForm[formElementIdentifier].value) :
           formData[formElementIdentifier] = addForm[formElementIdentifier].value
         }
-
-        console.log(formData)
     
         const add = {
           ...formData,
           date: new Date()
         };
-
-        console.log(add)
 
         axios.post(`https://firestore.googleapis.com/v1/projects/chatbot-2bd64/databases/(default)/documents/myShop`, {
           fields: { 

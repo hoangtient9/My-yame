@@ -1,10 +1,10 @@
+import { useHistory } from 'react-router-dom';
 import React, { useState, Fragment, useRef } from 'react';
 
-import classes from './Toolbar.module.scss';
 import Logo from '../../Logo/Logo';
-import NavigationItems from '../NavigationItems/NavigationItems';
+import classes from './Toolbar.module.scss';
 import ToolbarIcons from './ToolbarIcons/ToolbarIcons';
-import { useHistory } from 'react-router-dom';
+import NavigationItems from '../NavigationItems/NavigationItems';
 
 const Toolbar = props => {
 
@@ -25,30 +25,33 @@ const Toolbar = props => {
 
     return (
         <Fragment>
-        <div className={!show ? [classes.Search, classes.SearchHidden].join(' ') :classes.Search}>
-            <div>
+            <div className={!show ? [classes.Search, classes.SearchHidden].join(' ') :classes.Search}>
                 <div>
-                    <input type='search' placeholder='Search...' ref={myRef} onKeyDown={(e) => searchHandler(e)} />
-                </div>
-                <div>
-                    <span className="material-icons" onClick={() => setShow(!show)}>clear</span>
+                    <div>
+                        <input 
+                            type='search' 
+                            placeholder='Search...' 
+                            ref={myRef} onKeyDown={event => searchHandler(event)} />
+                    </div>
+                    <div>
+                        <span className="material-icons" onClick={() => setShow(!show)}>clear</span>
+                    </div>
                 </div>
             </div>
-        </div>
-        <header className={classes.Toolbar}>
-            <div>
-                <div className={classes.Logo}>
-                    <Logo />
-                </div>
-                <nav>
-                    <NavigationItems />
-                </nav>
-                <ToolbarIcons clicked={props.sideDrawerToggleClicked} show={() => {
-                    setShow(!show);
-                    setTimeout(() => myRef.current.focus(), 200)
-                }}/>
-            </div>     
-        </header>
+            <header className={classes.Toolbar}>
+                <div>
+                    <div className={classes.Logo}>
+                        <Logo />
+                    </div>
+                    <nav>
+                        <NavigationItems />
+                    </nav>
+                    <ToolbarIcons clicked={props.sideDrawerToggleClicked} show={() => {
+                        setShow(!show);
+                        setTimeout(() => myRef.current.focus(), 200)
+                    }}/>
+                </div>     
+            </header>
         </Fragment>
     )
 }

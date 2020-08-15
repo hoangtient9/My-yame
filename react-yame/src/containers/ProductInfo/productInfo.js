@@ -57,7 +57,6 @@ const ProductInfo = props => {
         history.push('/checkout')
     }
 
-
     let productInfo = <Spinner />;
 
     if (!loading && productInfoData) {

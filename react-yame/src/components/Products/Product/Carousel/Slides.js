@@ -6,14 +6,6 @@ const Carousel = props => {
     const myRef = useRef(null);
     let couter = 1;
 
-    // const goNext = useCallback(() => {
-    //     if (couter >= myRef.current.children.length -1) return
-    //         const size = myRef.current.children[couter].clientWidth;
-    //         couter++
-    //         myRef.current.style.transform = `translateX(${-size * couter}px)`;
-    //         myRef.current.style.transition = `transform 0.7s ease-in-out`;
-    // }, [couter])
-
     useEffect(() => {
         if (props.slides.length > 1) {
             const size = myRef.current.children[couter].clientWidth;
@@ -49,7 +41,6 @@ const Carousel = props => {
     if(props.slides.length === 0){
         return null
     }
-
 
     return (
         <div className={classes.Carousel} ref={myRef} onTransitionEnd={preCouter}>

@@ -7,6 +7,7 @@ import * as actions from '../actions';
 export function* logoutSaga() {
     yield all([
         call([localStorage, 'removeItem'], 'idToken'),
+        call([localStorage, 'removeItem'], 'refreshToken'),
         call([localStorage, 'removeItem'], 'userId'),
         call([localStorage, 'removeItem'], 'expirationDate')
     ])
@@ -15,7 +16,8 @@ export function* logoutSaga() {
 
 export function* checkAuthTimeoutSaga(action) {
     yield delay(action.expirationTime * 1000);
-    yield put(actions.authLogout())
+    // yield put(actions.authLogout())
+    yield put(actions.authRefreshToken())
 }
 
 export function* authUserSaga(action) {
@@ -35,6 +37,7 @@ export function* authUserSaga(action) {
             const response = yield axios.post(url, authData)
             const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
             yield localStorage.setItem('idToken', response.data.idToken);
+            yield localStorage.setItem('refreshToken', response.data.refreshToken);
             yield localStorage.setItem('expirationDate', expirationDate)
             yield localStorage.setItem('userId', response.data.localId)
             yield put(actions.authSuccess(response.data.idToken, response.data.localId))
@@ -43,7 +46,6 @@ export function* authUserSaga(action) {
     catch(error) {
         yield put(actions.authFail(error.response.data.error))
     }
-
 }
 
 export function* authCheckStateSaga() {
@@ -53,7 +55,8 @@ export function* authCheckStateSaga() {
     } else {
         const expirationDate = yield new Date(localStorage.getItem('expirationDate'))
         if (expirationDate <= new Date()) {
-            yield put(actions.authLogout())
+            // yield put(actions.authLogout())
+            yield put(actions.authRefreshToken())
         } else {
             const userId = localStorage.getItem('userId')
             yield put(actions.authSuccess(token, userId))
@@ -70,8 +73,35 @@ export function* resetPasswordSaga(action) {
         }
         const url = 'https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key=' + key;
         const response = yield axios.post(url, reset)
+        const expirationDate = new Date(new Date().getTime() + response.data.expiresIn * 1000);
+        yield localStorage.setItem('idToken', response.data.idToken);
+        yield localStorage.setItem('refreshToken', response.data.refreshToken);
+        yield localStorage.setItem('expirationDate', expirationDate)
+        yield localStorage.setItem('userId', response.data.localId)
         yield put(actions.resetPasswordSuccess(response.data))
     } catch (error) {
         yield put(actions.resetPasswordFail(error))
+    }
+}
+
+export function* authRefreshTokenSaga(action) {
+    const refreshToken = yield localStorage.getItem('refreshToken');
+    const authData = {
+        Grant_type : 'refresh_token',
+        refresh_token: refreshToken
+    }
+    const url = 'https://securetoken.googleapis.com/v1/token?key=' + key;
+
+    try {   
+        if (!refreshToken) {
+            yield put(actions.authLogout())
+        } else {
+            const response = yield axios.post(url, authData)
+            yield put(actions.authRefreshTokenSuccess(response.data.idToken, response.data.localId))
+        }
+    } 
+    catch(error) {
+        // yield put(actions.authFail(error.response.data.error))
+        yield put(actions.authLogout())
     }
 }

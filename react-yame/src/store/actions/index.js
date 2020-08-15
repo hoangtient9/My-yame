@@ -52,5 +52,7 @@ export {
     resetPasswordStart,
     resetPasswordSuccess,
     resetPasswordFail,
-    resetPassword
+    resetPassword,
+    authRefreshToken,
+    authRefreshTokenSuccess
 } from './auth'
